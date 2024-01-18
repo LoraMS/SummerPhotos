@@ -1,5 +1,5 @@
 const BaseData = require('./base/base-data');
-const { ObjectId } = require('mongodb').ObjectId;
+const { ObjectId } = require('mongodb');
 const PublisherModel = require('../models/publisher-model');
 
 class PublisherData extends BaseData {

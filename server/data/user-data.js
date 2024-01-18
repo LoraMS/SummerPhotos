@@ -3,8 +3,8 @@ const BaseData = require('./base/base-data');
 const UserModel = require('../models/user-model');
 
 class UsersData extends BaseData {
-    constructor(db) {
-        super(db, UserModel, UserModel);
+    constructor(client) {
+        super(client, UserModel, UserModel);
     }
 
     findByUsername(username) {

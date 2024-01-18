@@ -1,8 +1,9 @@
 const { ObjectId } = require('mongodb').ObjectId;
+const config = require('./../../configurations');
 
 class BaseData {
-    constructor(db, ModelClass, validator) {
-        this.db = db;
+    constructor(client, ModelClass, validator) {
+        this.db = client.db(config.dbName);
         this.ModelClass = ModelClass;
         this.validator = validator;
         this.collectionName = this._getCollectionName();

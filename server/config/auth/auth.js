@@ -2,7 +2,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
 const LocalStrategy = require('passport-local');
 const encryption = require('../../utilities/encryption');
 
@@ -43,12 +43,13 @@ const init = (app, { users }) => {
     }));
     app.use(session({
         secret: config.sessionSecret,
-        store: new MongoStore({
-            url: config.connectionString,
-            ttl: 14 * 24 * 60 * 60, // = 14 days. Default
-        }),
-        resave: true,
-        saveUninitialize: true,
+        saveUninitialize: false,
+        resave: false,
+        store: MongoStore.create({
+            mongoUrl: config.connectionString,
+            touchAfter: 24 * 3600 // time period in seconds
+            //ttl: 14 * 24 * 60 * 60, // = 14 days. Default
+        })
     }));
     app.use(passport.initialize());
     app.use(passport.session());

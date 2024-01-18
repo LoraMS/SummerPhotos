@@ -1,4 +1,4 @@
-const { ObjectId } = require('mongodb').ObjectId;
+const { ObjectId } = require('mongodb');
 const BaseData = require('./base/base-data');
 const PublicationModel = require('../models/publication-model');
 

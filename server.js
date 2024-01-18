@@ -11,7 +11,7 @@ let numClients = 0;
 // let server = null;
 async()
 .then(() => require('./server/db').init(config.connectionString))
-    .then((db) => require('./server/data').init(db))
+    .then((client) => require('./server/data').init(client))
     .then((data) => require('./server/config').init(data))
     .then((app) => {
         return app.listen(config.port, () =>
